@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Gastenboek')"></head>
+<body>
+<nav th:replace="fragments::menu"></nav>
+<h1>Gastenboek</h1>
+<a th:if="not ${bericht}" th:href="@{gastenboek/form}">Toevoegen</a>
+<form th:if="${bericht}" th:object="${bericht}" th:action="@{/gastenboek}" method="post">
+    <label>Naam:<span th:errors="*{naam}"></span>
+        <input th:field="*{naam}" type="text" autofocus required>
+    </label>
+    <label>Bericht:<span th:errors="*{bericht}"></span>
+        <input th:field="*{bericht}" type="text" required>
+    </label>
+    <input type="hidden" name="id" value="0">
+    <span th:errors="*{datum}"></span>
+    <input th:field="*{datum}" type="hidden">
+    <button>Toevoegen</button>
+</form>
+
+<form method="post" th:if="not ${berichten.isEmpty()}" th:action="@{/gastenboek/verwijderen}">
+    <ul>
+        <li th:each="entry : ${berichten}" th:object="${entry}">
+            <strong th:text="|*{{datum}} *{naam} |"></strong>
+            <th:block th:text="*{bericht}"></th:block>
+            <input type="checkbox" name="id" th:value="*{id}">
+        </li>
+    </ul>
+    <button>Verwijderen</button>
+</form>
+</body>
+</html>
