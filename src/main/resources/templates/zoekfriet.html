@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Zoek Friet')"></head>
+<body>
+<nav th:replace="fragments::menu"></nav>
+<h1>Zoek Friet</h1>
+<form method="post" th:action="@{/zoekfriet}">
+    <button th:each="opendeur, iterStat : ${opendeuren}" name="index" th:value="${iterStat.index}">
+        <img th:if="not ${opendeur}" th:src="@{/images/deurtoe.png}" alt="deur toe">
+        <img th:if="${opendeur} and ${deurMetFriet} != ${iterStat.index}" th:src="@{/images/deuropen.png}" alt="deur open">
+        <img th:if="${deurMetFriet} == ${iterStat.index}" th:src="@{/images/gevonden.png}" alt="friet gevonden">
+    </button>
+</form>
+<form method="post" th:action="@{/zoekfriet/nieuwspel}">
+    <button>Nieuw Spel</button>
+</form>
+</body>
+</html>

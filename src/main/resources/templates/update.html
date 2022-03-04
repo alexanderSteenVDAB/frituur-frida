@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Snack Updaten')"></head>
+<body>
+<nav th:replace="fragments::menu"></nav>
+<h1>Snack updaten</h1>
+<form th:if="${snack}" th:object="${snack}" th:action="@{/snacks/update}" method="post">
+    <label>
+        <input type="number" th:field="*{id}" readonly hidden>
+    </label>
+    <label>
+        Naam:
+        <input type="text" required autofocus th:field="*{naam}">
+    </label>
+    <label>
+        Prijs:
+        <input type="number" step="0.01" required min="0" th:field="*{prijs}">
+    </label>
+    <button>Update</button>
+</form>
+<div th:if="not ${snack}" th:text="|Snack met id ${id} niet gevonden|"></div>
+</body>
+</html>

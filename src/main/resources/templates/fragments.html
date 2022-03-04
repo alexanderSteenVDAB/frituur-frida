@@ -1,0 +1,21 @@
+<!--suppress HtmlUnknownTag -->
+<div xmlns:th="http://www.thymeleaf.org">
+    <nav th:fragment="menu">
+        <ul>
+            <li><a th:href="@{/}">Welkom</a></li>
+            <li><a th:href="@{/sauzen}">Sauzen</a></li>
+            <li><a th:href="@{/sauzen/alfabet}">Sauzen Alfabet</a></li>
+            <li><a th:href="@{/snacks/alfabet}">Snacks Alfabet</a></li>
+            <li><a th:href="@{/snacks/aantalverkocht}">Snacks Aantal verkocht</a></li>
+            <li><a th:href="@{/snacks/beginletters/form}">Snacks Zoeken</a></li>
+            <li><a th:href="@{/taal}">Taal</a></li>
+            <li><a th:href="@{/zoekfriet}">Zoek De Friet</a></li>
+        </ul>
+    </nav>
+
+    <head th:fragment="head(title)">
+        <title th:text="${title}"></title>
+        <link rel="icon" th:href="@{/images/frituur.ico}" type="image/x-icon">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+</div>
